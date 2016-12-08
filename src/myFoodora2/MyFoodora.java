@@ -9,6 +9,10 @@ public class MyFoodora {
 	private double markupPercentage; //
 	private double deliveryCost;
 	
+	DeliveryPolicy deliveryPolicy; // the policy of delivery of the system 
+	// TODO -> generate the way to change (just setter and getter ?)
+	
+	
 	
 	public MyFoodora(double serviceFee, double markupPercentage, double deliveryCost) {
 		super();
@@ -16,6 +20,7 @@ public class MyFoodora {
 		this.markupPercentage = markupPercentage;
 		this.deliveryCost = deliveryCost;
 	}
+
 
 	public double getServiceFeePercentage() {return serviceFeePercentage;}
 
@@ -36,6 +41,10 @@ public class MyFoodora {
 	public double getDeliveryCost() {return deliveryCost;}
 
 	public void setDeliveryCost(double deliveryCost) {this.deliveryCost = deliveryCost;} 	
+	
+	public DeliveryPolicy getDeliveryPolicy() {return deliveryPolicy;}
+
+	public void setDeliveryPolicy(DeliveryPolicy deliveryPolicy) {this.deliveryPolicy = deliveryPolicy;}
 
 	public void notifyUsers(RestaurantOffer offer){
 		for (User user : this.users){

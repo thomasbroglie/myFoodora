@@ -19,6 +19,29 @@ public class Courier extends User {
 		this.id=User.idCounter;
 	}
 	
+	public void getDeliveryCall(Order order){
+		System.out.println("you are" + this.toString());
+		System.out.println("do you want to deliver this order : " + order.toString());
+		
+		Scanner sc = new Scanner(System.in);
+		String a = sc.nextLine();
+		sc.close();
+		if (a.equalsIgnoreCase("oui")){
+			//TODO
+			this.deliveredOrderCounter++;
+			}
+		if (a.equalsIgnoreCase("non")){
+			// TODO
+		}		
+		//TODO handle exception		
+	}
+		
+	@Override
+	public String toString() {
+		return "Courier [surname=" + surname + ", phone=" + phone + ", position=" + position
+				+ ", deliveredOrderCounter=" + deliveredOrderCounter + ", workState=" + workState + "]";
+	}
+
 	public String getSurname() {return surname;}
 
 	public void setSurname(String surname) {this.surname = surname;}
@@ -39,5 +62,4 @@ public class Courier extends User {
 
 	public void setWorkState(boolean workState) {this.workState = workState;}
 
-	
 }

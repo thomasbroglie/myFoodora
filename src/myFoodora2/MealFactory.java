@@ -17,7 +17,8 @@ public class MealFactory {
 			return new HalfMealStartMain(name, listeplats);}
 		if (starter==0 && maindish==1 && dessert==1){
 			return new HalfMealMainDessert(name, listeplats);}
-		return null; //message d'exception/d'erreur normalement !! TO DO !
+		return null; //TODO
+		//message d'exception/d'erreur normalement !! TO DO !
 	}
 }
 

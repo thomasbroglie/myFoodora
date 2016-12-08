@@ -85,6 +85,13 @@ public class Restaurant extends User {
 		number of time they been selected `a la carte */
 		
 		order.sort(criteria); //TODO
+		
+		
+		
 	}
+
+	public ArrayList<Double> getAdress() {return adress;}
+
+	public void setAdress(ArrayList<Double> adress) {this.adress = adress;}
 	
 }

@@ -1,18 +1,35 @@
 package myFoodora2;
 import java.util.*;
 
-public class Customer extends User {
+public class Customer extends User implements Observer {
 	
 	private String surname;
 	private String email; //email adress
 	private ArrayList<Double> coordonates = new ArrayList<Double>(2) ; //coordonnées du lieu où habite le customer
 	private String phone;
-	private boolean consensus = false ; // True : the Customer agrees to get notified whenever a new special offer is set by ani restaurant
+	//private boolean consensus = false ; // True : the Customer agrees to get notified whenever a new special offer is set by ani restaurant
+	// no more consensus attribute : everything's handled by the ObserverPattern !
+	
+	
 	
 	//Fidelity basic = new Fidelity(basic)
 	private ArrayList<FidelityCard> fidelityCards = new ArrayList<FidelityCard>(); //a fidelitycard goes for ONE programm in ONE restaurant.
 	
 	
+	@Override
+	public void update(String notifContents) {
+		System.out.println("There is a new Notification for you : " + notifContents); 
+	}
+	
+	public void giveConsensus(){
+		//TODO : add to the Notification-list
+	}
+	
+	public void removeConsensus(){
+		//TODO : remove frome the Notification-list
+	}
+	
+
 	public Customer(String username, String name, String surname, String email, ArrayList<Double> coordonates, String phone) {
 		super(username, name);
 		this.surname=surname;
@@ -50,10 +67,6 @@ public class Customer extends User {
 	public String getPhone() {return phone;}
 
 	public void setPhone(String phone) {this.phone = phone;}
-
-	public boolean isConsensus() {return consensus;}
-
-	public void setConsensus(boolean consensus) {this.consensus = consensus;}
 
 	@Override
 	public String toString() {
