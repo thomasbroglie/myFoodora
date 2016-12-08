@@ -1,4 +1,6 @@
 package myFoodora2;
+import java.util.*;
+
 
 public class Order {
 	
@@ -6,7 +8,7 @@ public class Order {
 	private Restaurant resto;
 	private Product product; //-> has a price through product.getPrice()
 	private Courier courier;
-	//private Time time;
+	private Date time;
 	
 	
 }

@@ -1,6 +1,7 @@
 package myFoodora2;
 import java.util.*;
 
+
 public class Manager extends User {
 	private String surname;	
 	
@@ -50,7 +51,7 @@ public class Manager extends User {
 		User newUser = userfacto.CreateUser(userType);
 		ArrayList<User> users = myFoodora.getUsers();
 		users.add(newUser);
-		myFoodora.setUsers(users);
+		myFoodora.setUsers(users); 
 		//TODO : exceptions
 	}
 	
@@ -67,10 +68,12 @@ public class Manager extends User {
 		
 	}
 	
-	public void computing(int timePeriod, ArrayList<//zjhdbqlzdbclsjhbdsbvb> completedOrders){
+	public void computing(Date begin, Date end, ArrayList<Order> completedOrders){
 		// Compute income and profit over a period time
-		
+		final Date time;
+	    time = Calendar.getInstance().getTime();
 	}
+	
 	
 	public void computeAverageIncomePerCustomer(int timePeriod){
 		// Compute average income per customer (ie. the total income divided by the number

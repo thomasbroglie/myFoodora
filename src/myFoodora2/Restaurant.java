@@ -75,7 +75,7 @@ public class Restaurant extends User {
 	}
 	
 	// A mettre dans les managers --> a reinstancer quand on n'en veut pas
-	public void sortShipped (String criteria, Ship ship){
+	public void sortShipped (String criteria, Order order){
 		/* Allow restaurants and managers to sort the
 		shipped orders according to different criteris. MyFoodora should support the following
 		policies:
@@ -84,7 +84,7 @@ public class Restaurant extends User {
 		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
 		number of time they been selected `a la carte */
 		
-		ship.sort(criteria); //TO DO
+		order.sort(criteria); //TODO
 	}
 	
 }

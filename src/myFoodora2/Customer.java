@@ -13,7 +13,6 @@ public class Customer extends User {
 	private ArrayList<FidelityCard> fidelityCards = new ArrayList<FidelityCard>(); //a fidelitycard goes for ONE programm in ONE restaurant.
 	
 	
-	
 	public Customer(String username, String name, String surname, String email, ArrayList<Double> coordonates, String phone) {
 		super(username, name);
 		this.surname=surname;
@@ -55,10 +54,6 @@ public class Customer extends User {
 	public boolean isConsensus() {return consensus;}
 
 	public void setConsensus(boolean consensus) {this.consensus = consensus;}
-
-	public Customer() {
-		super();
-	}
 
 	@Override
 	public String toString() {

@@ -1,39 +1,31 @@
 package myFoodora2;
+import java.util.*;
+
 
 public class UserFactory {
 	
-	public User CreateUser(String userType){
+	public User CreateUser(String userType, String username, String name){
 		if(userType == null){
 			return null;
 		}
+		
 		if(userType.equalsIgnoreCase("restaurant")){
-			return new Restaurant();
+			// On a besoin d'une info en plus importante : l'adresse
+			return new Restaurant(name, adress, username);
+			
 		} else if(userType.equalsIgnoreCase("customer")){
-			return new Customers();
+			
+			//On a besoin de nouvelles informations
+			
+			
+			return new Customer(username, name, username, email, coordonates, phone);
 		} else if(userType.equalsIgnoreCase("courier")){
-			return new Couriers();
+			return new Courier();
 		} else if(userType.equalsIgnoreCase("manager")){
 			return new Manager();
 		}
 		return null;
 	}
 	
-	public User DeleteUser(String userType){
-		if(userType == null){
-			return null;
-		}
-		if(userType.equalsIgnoreCase("restaurant")){
-			return new Restaurant();
-		} else if(userType.equalsIgnoreCase("customer")){
-			return new Customers();
-		} else if(userType.equalsIgnoreCase("courier")){
-			return new Couriers();
-		} else if(userType.equalsIgnoreCase("manager")){
-			return new Manager();
-		}
-		return null;
-		
-		//TODO
-		
-	}
+	public User CreateUser(String userType, String username, String name, String username, String email, ){
 }

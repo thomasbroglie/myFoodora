@@ -39,16 +39,5 @@ public class Courier extends User {
 
 	public void setWorkState(boolean workState) {this.workState = workState;}
 
-	public Courier() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Courier(String username, String name) {
-		super(username, name);
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	
 	
 }
