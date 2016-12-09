@@ -114,7 +114,7 @@ public class Restaurant extends User {
 		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
 		number of time they been selected `a la carte */
 		
-		return myFoodora.sortOrders(criteria); //TODO
+		return myFoodora.sortOrders(criteria); 
 	}
 
 	public ArrayList<Double> getAdress() {return adress;}

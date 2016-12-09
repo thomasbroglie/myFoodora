@@ -10,10 +10,8 @@ public class MyFoodora {
 	private double deliveryCost;
 	
 	DeliveryPolicy deliveryPolicy; // the policy of delivery of the system 
-	// TODO -> generate the way to change (just setter and getter ?)
 	
-	
-	
+	//Constructor
 	public MyFoodora(double serviceFee, double markupPercentage, double deliveryCost) {
 		super();
 		this.serviceFeePercentage = serviceFee;
@@ -21,6 +19,7 @@ public class MyFoodora {
 		this.deliveryCost = deliveryCost;
 	}
 	
+	//Fonction permettant de récuperer les Users par type !
 	public ArrayList<User> getUserPerType(String type){
 		//Pas très open-close mais bon j'arrive pas à faire mieux
 		ArrayList<User> usersTriee = new ArrayList<User>();
@@ -37,18 +36,14 @@ public class MyFoodora {
 		return usersTriee;
 	}
 
-
+	//Getters and setters
 	public double getServiceFeePercentage() {return serviceFeePercentage;}
 
 	public void setServiceFeePercentage(double serviceFeePercentage) {this.serviceFeePercentage = serviceFeePercentage;}
 
 	public ArrayList<User> getUsers() {return users;}
 
-	public void setUsers(ArrayList<User> users) {this.users = users;}
-
 	public ArrayList<Order> getOrders() {return orders;}
-
-	public void setOrders(ArrayList<Order> orders) {this.orders = orders;}
 
 	public double getMarkupPercentage() {return markupPercentage;}
 
@@ -62,6 +57,7 @@ public class MyFoodora {
 
 	public void setDeliveryPolicy(DeliveryPolicy deliveryPolicy) {this.deliveryPolicy = deliveryPolicy;}
 
+	//Notification des Users poour un nouvelle offre
 	public void notifyUsers(RestaurantOffer offer){
 		//TODO 
 		for (User user : this.users){
@@ -70,16 +66,28 @@ public class MyFoodora {
 		
 	}
 	
+	//Modifications sur la liste users
 	public void addUser(User user){
 		this.users.add(user);
 	}
 	
 	public void removeUser(User user){
 		this.users.remove(user);
+	}	
+	
+	//Modifications sur la liste orders
+	public void newOrder(Order order){
+		//On pense bien à mettre toutes ces informations à jour quand on crée un nouvel order
+		this.orders.add(order);
+		
+		//Mise à jour de income du Restaurant
+		order.getResto().setIncome(order.getResto().getIncome()+order.getPrice());
+		
+		//Mise à jour du compteur du courier
+		order.getCourier().newCourse();
 	}
-	
-	
-	
+
+	//Opérations pour les managers notamment
 	public ArrayList<Double> computing(Date begin, Date end){
 		// Compute income and profit over a period time
 		ArrayList<Double> liste= new ArrayList<Double>();
@@ -170,7 +178,7 @@ public class MyFoodora {
 		return liste;
 	 }
 	 
-	 public ArrayList<Order> sortOrders(){
+	 public ArrayList<Order> sortOrders(String criteria){
 		 /* Allow restaurants and managers to sort the
 		shipped orders according to different criteris. MyFoodora should support the following
 		policies:
@@ -178,7 +186,7 @@ public class MyFoodora {
 		of shipped half-meals
 		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
 		number of time they been selected `a la carte */
-		 
+		
 		 
 	 }
 	

@@ -1,6 +1,6 @@
 package myFoodora2;
 
-public class MenuItem {
+public class MenuItem implements Product {
 	private String name;
 	private double price;
 	private String category; //"starter", "main-dish", "dessert"
@@ -52,7 +52,7 @@ public class MenuItem {
 
 	public void setGlutenfree(boolean glutenfree) {this.glutenfree = glutenfree;}
 	
-		@Override
+	@Override
 	public String toString() {
 		return "MenuItem [price=" + price + ", category=" + category + ", vegetarian=" + vegetarian + ", glutenfree="
 				+ glutenfree + "]";
@@ -66,7 +66,7 @@ public class MenuItem {
 	
 	//Implémentation du Visitor Pattern
 	@Override
-	public int accept(OrderVisitor visitor) {
+	public double getFinalPrice(ShoppingCartVisitor visitor) {
 		return visitor.visit(this);
 	}
 		
