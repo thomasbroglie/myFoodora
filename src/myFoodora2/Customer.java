@@ -11,7 +11,6 @@ public class Customer extends User implements Observer {
 	// no more consensus attribute : everything's handled by the ObserverPattern !
 	
 	
-	
 	//Fidelity basic = new Fidelity(basic)
 	private ArrayList<FidelityCard> fidelityCards = new ArrayList<FidelityCard>(); //a fidelitycard goes for ONE programm in ONE restaurant.
 	
