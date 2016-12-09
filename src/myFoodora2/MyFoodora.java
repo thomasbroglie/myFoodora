@@ -78,6 +78,8 @@ public class MyFoodora {
 		this.users.remove(user);
 	}
 	
+	
+	
 	public ArrayList<Double> computing(Date begin, Date end){
 		// Compute income and profit over a period time
 		ArrayList<Double> liste= new ArrayList<Double>();
