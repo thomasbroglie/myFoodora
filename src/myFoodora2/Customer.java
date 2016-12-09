@@ -29,23 +29,16 @@ public class Customer extends User implements Observer {
 		//TODO : remove frome the Notification-list
 	}
 	
-
-	public Customer(String username, String name, String surname, String email, ArrayList<Double> coordonates, String phone) {
-		super(username, name);
-		this.surname=surname;
-		this.email = email;
-		this.coordonates = coordonates;
-		this.phone=phone;
-		
-		User.idCounter++;
-		this.id=User.idCounter;
-		
+	public Customer(){
+		super();
 		FidelityCardFactory facto = new FidelityCardFactory();
+
 		for (Restaurant resto : LISTE DES RESTAURANTS){
 			FidelityCard fidel = new BasicFidelityCard(resto);
 			this.fidelityCards.add(fidel); //pas défaut, chaque costumer a la carte de fidélité basique pour tous les restaurants.
 			
 		}
+		
 	}
 	
 	//All the setters and Getters :

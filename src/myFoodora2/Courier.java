@@ -14,9 +14,10 @@ public class Courier extends User {
 		this.surname = surname;
 		this.phone = phone;
 		this.position = position;
-		
-		User.idCounter++;
-		this.id=User.idCounter;
+	}
+	
+	public Courier(){
+		super();
 	}
 	
 	public void getDeliveryCall(Order order){

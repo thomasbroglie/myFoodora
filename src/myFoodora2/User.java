@@ -3,14 +3,21 @@ package myFoodora2;
 public abstract class User {
 	protected static int idCounter;
 	protected int id;
-	protected String username;
-	protected String name;
+	protected String username = "";
+	protected String name ="";
 	protected boolean activated = true ; // activitated user or not ; by default, the user is activated when it arrives.
 	
 	public User(String username, String name) {
 		super();
 		this.username = username;
 		this.name = name;
+		User.idCounter++;
+		this.id=User.idCounter;
+	}
+	
+	public User(){
+		User.idCounter++;
+		this.id=User.idCounter;
 	}
 	
 	//public int getId() {return id;}
@@ -26,5 +33,7 @@ public abstract class User {
 	public boolean isActivated() {return activated;}
 
 	public void setActivated(boolean activated) {this.activated = activated;}
+
+	public int getId() { return id; }
 	
 }

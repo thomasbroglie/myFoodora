@@ -14,17 +14,44 @@ public class Restaurant extends User {
 	
 	private double genericDiscountFactor = 0.05;
 	private double specificDiscountFactor = 0.1;
+	private double income=0;
 	
 	private Meal mealOfTheWeek = null; //the meal of the week
 	
-	public Restaurant(String name, ArrayList<Double> adress, String username) {
-		super(username, name);
-		this.adress = adress;
-		
-		User.idCounter++;
-		this.id = User.idCounter;
+	public Restaurant(){
+		super();
 	}
 	
+	public double getIncome() {
+		return income;
+	}
+
+	public void setIncome(double income) {
+		this.income = income;
+	}
+	
+	public Meal getMealOfTheWeek() {
+		return mealOfTheWeek;
+	}
+
+
+	public void setMealOfTheWeek(Meal mealOfTheWeek) {
+		this.mealOfTheWeek = mealOfTheWeek;
+		// Note: pas de prix à updater parce qu'on fait le choix de calculer le prix à chaque commande
+		// non de sauver cela demande trop de mises à jour si on modifie le prix d'un meal
+	}
+
+
+	public ArrayList<MenuItem> getMenu() {
+		return menu;
+	}
+
+
+	public ArrayList<Meal> getMeals() {
+		return meals;
+	}
+
+
 	public void addItemToRestaurantMenu(String name, double price, String category, boolean vegetarian,
 			boolean glutenfree){
 		//editing the restaurant menu (adding items)
@@ -41,15 +68,16 @@ public class Restaurant extends User {
 		//editing the restaurant menu (adding items) 
 		
 		//Création du Meal et ajout à la liste
-	// TO DO //new meal (name, listeplats, mealOfTheWeek); #factoryPattern
-		MealFactory facto = new MealFactory();		
-		Meal meal = facto.createMeal(name, listeplats);		
+		//get Meal factory
+		AbstractFactory mealFactory = FactoryProducer.getFactory("MEAL");
+		//Chose of the type
+		Meal meal = mealFactory.createMeal(name, listeplats);		
 		this.meals.add(meal);
 	}
 	
-	public void removeMealFromRestaurantMenu(int index){
+	public void removeMealFromRestaurantMenu(Meal meal){
 		//editing the restaurant menu (removing items)
-		this.meals.remove(index);
+		this.meals.remove(meal);
 	}
 	
 	public void setGenericDiscountFactor(double genericDiscountFactor){
@@ -66,16 +94,18 @@ public class Restaurant extends User {
 		this.specificDiscountFactor = specificDiscountFactor;
 	}
 	
-	public void setMealOfTheWeek(int index){
-		// Ici pour choisir un MealOfTheWeek et enlever le précédent -> pas besoin d'enlever le précédent.
-		// Note: pas de prix à updater parce qu'on fait le choix de calculer le prix à chaque commande
-		// non de sauver cela demande trop de mises à jour si on modifie le prix d'un meal
+	public double getGenericDiscountFactor(){
+	
+		return this.genericDiscountFactor;
+	}
+	
+	public double getSpecificDiscountFactor(){
 		
-		this.mealOfTheWeek = this.meals.get(index); //the new meal of the week
+		return this.specificDiscountFactor;
 	}
 	
 	// A mettre dans les managers --> a reinstancer quand on n'en veut pas
-	public void sortShipped (String criteria, Order order){
+	public void sortShipped (String criteria, MyFoodora myFoodora){
 		/* Allow restaurants and managers to sort the
 		shipped orders according to different criteris. MyFoodora should support the following
 		policies:
@@ -84,10 +114,7 @@ public class Restaurant extends User {
 		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
 		number of time they been selected `a la carte */
 		
-		order.sort(criteria); //TODO
-		
-		
-		
+		return myFoodora.sortOrders(criteria); //TODO
 	}
 
 	public ArrayList<Double> getAdress() {return adress;}

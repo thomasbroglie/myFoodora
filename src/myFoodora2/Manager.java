@@ -5,11 +5,8 @@ import java.util.*;
 public class Manager extends User {
 	private String surname;	
 	
-	public Manager(String name, String surname, String username) {
-		super(username, name);
-		this.surname = surname;
-		User.idCounter++;
-		this.id = User.idCounter;
+	public Manager() {
+		super();
 	}
 
 	public int getId() {
@@ -40,19 +37,12 @@ public class Manager extends User {
 		this.username = username;
 	}
 
-	public void removeUser(User user){
-		// But : enlever tout type d'utilisateur (restaurant, customer, and/or couriers)
-		
+	public void removeUser(User user, MyFoodora myFoodora){
+		myFoodora.removeUser(user);
 	}
 	
-	public void addUser(String userType, MyFoodora myFoodora){
-		// But : ajouter tout type d'utilisateur (restaurant, customer, and/or couriers)
-		UserFactory userfacto = new UserFactory();
-		User newUser = userfacto.CreateUser(userType);
-		ArrayList<User> users = myFoodora.getUsers();
-		users.add(newUser);
-		myFoodora.setUsers(users); 
-		//TODO : exceptions
+	public void addUser(User user, MyFoodora myFoodora){
+		myFoodora.addUser(user);
 	}
 	
 	public void activateDesactivateUser(boolean activated, User user){
@@ -65,41 +55,39 @@ public class Manager extends User {
 		myFoodora.setServiceFeePercentage(serviceFeePercentage);
 		myFoodora.setDeliveryCost(deliveryCost);
 		myFoodora.setMarkupPercentage(markupPercentage);
-		
 	}
 	
-	public void computing(Date begin, Date end, ArrayList<Order> completedOrders){
-		// Compute income and profit over a period time
-		final Date time;
-	    time = Calendar.getInstance().getTime();
+	public ArrayList<Double> computing(Date begin, Date end, MyFoodora myFoodora){
+		return myFoodora.computing(begin, end);
 	}
 	
 	
-	public void computeAverageIncomePerCustomer(int timePeriod){
+	public Hashtable<User, Double> computeAverageIncomePerCustomer(Date begin, Date end, MyFoodora myFoodora){
 		// Compute average income per customer (ie. the total income divided by the number
 		// of customers that placed at least one command on a time period)
-		
+		return myFoodora.computeAverageIncomePerCustomer(begin, end);
 	}
 	
 	public void optimizing (double targetProfit){
 		// determining either the service-fee and/or markup percentage and/or the deliverycost
-		// so to meet a target-profit (see target profit policies below)
-
+		// so to meet a target-profit (see target profit policies)
+		//TODO 
 	}
 	
-	public void mostLeastSellingRestaurant (){
+	public ArrayList<Restaurant> mostLeastSellingRestaurant (MyFoodora myFoodora){
 		// Determining the most and least selling restaurant
+		return myFoodora.mostLeastSellingRestaurant();
 	}
 	
-	public void mostLeastActiveCourier(){
+	public ArrayList<Courier> mostLeastActiveCourier(MyFoodora myFoodora){
 		// Determining the most/least active courier of the fleet
-
+		return myFoodora.mostLeastActiveCourier();
 	}
 	 
 	public void setDeliveryPolicy(){
-		//  setting the current delivery-policy used by MyFoodora to determine which courier
+		// setting the current delivery-policy used by MyFoodora to determine which courier
 		// is assigned to deliver an order placed by a customer
-		
+		//TODO : voir avec Olivier pour policy pattern (strategy)
 	}
 	
 	

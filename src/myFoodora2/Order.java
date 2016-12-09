@@ -9,12 +9,40 @@ public class Order {
 	private Product product; //-> has a price through product.getPrice()
 	private Courier courier;
 	private Date time;
+	private double price;
 	
 	@Override
 	public String toString() {
 		return "Order [customer=" + customer + ", resto=" + resto + ", product=" + product + ", courier=" + courier
 				+ ", time=" + time + "]";
 	}
+	
+	
+
+	/**
+	 * @param customer
+	 * @param resto
+	 * @param product
+	 * @param courier
+	 * @param time
+	 * @param price
+	 */
+	
+	public Order(Customer customer, Restaurant resto, Product product, Courier courier, Date time, double price) {
+		super();
+		this.customer = customer;
+		this.resto = resto;
+		this.product = product;
+		this.courier = courier;
+		this.time = time;
+		this.price = price;
+	}
+
+
+
+	public double getPrice() { return price; }
+
+	public void setPrice(double price) { this.price = price; }
 
 	public Customer getCustomer() {return customer;}
 

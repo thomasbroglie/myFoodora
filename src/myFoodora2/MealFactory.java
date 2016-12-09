@@ -1,8 +1,14 @@
 package myFoodora2;
 import java.util.ArrayList;
 
-public class MealFactory {
+public class MealFactory extends AbstractFactory{
 	
+	@Override
+	public User createUser(String userType){
+		return null;
+	}
+	
+	@Override
 	public Meal createMeal(String name, ArrayList<MenuItem> listeplats){
 		// looks what kind of meal it is and create it.
 		int starter = 0;int maindish = 0;int dessert=0;
@@ -20,5 +26,6 @@ public class MealFactory {
 		return null; //TODO
 		//message d'exception/d'erreur normalement !! TO DO !
 	}
+	
 }
 

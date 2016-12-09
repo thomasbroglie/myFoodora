@@ -2,31 +2,25 @@ package myFoodora2;
 import java.util.*;
 
 
-public class UserFactory {
-	
-	public User CreateUser(String userType, String username, String name){
-		if(userType == null){
-			return null;
-		}
-		
-		if(userType.equalsIgnoreCase("restaurant")){
-			// On a besoin d'une info en plus importante : l'adresse
-			return new Restaurant(name, adress, username);
-			
-		} else if(userType.equalsIgnoreCase("customer")){
-			
-			//On a besoin de nouvelles informations
-			
-			
-			return new Customer(username, name, username, email, coordonates, phone);
-		} else if(userType.equalsIgnoreCase("courier")){
-			return new Courier();
-		} else if(userType.equalsIgnoreCase("manager")){
+public class UserFactory extends AbstractFactory{
+	//Nos instanciations sont extrêmement simples à cause des disparités d'infos entre les types de users --> on fera tout avec des sets ensuite
+	@Override
+	public User createUser(String userType){
+		if(userType.equalsIgnoreCase("CUSTOMER")){
+			return new Customer();
+		} else if(userType.equalsIgnoreCase("MANAGER")){
 			return new Manager();
-		}
+		} else if(userType.equalsIgnoreCase("COURIER")){
+			return new Courier();
+		}else if(userType.equalsIgnoreCase("RESTAURANT")){
+			return new Restaurant();
+		} 
+		
 		return null;
 	}
 	
-	public User CreateUser(String userType, String username, String name, String username, String email){}
-	
+	@Override
+	public Meal createMeal(String name, ArrayList<MenuItem> listeplats){
+		return null;
+	}
 }
