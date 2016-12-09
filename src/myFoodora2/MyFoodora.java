@@ -63,6 +63,7 @@ public class MyFoodora {
 	public void setDeliveryPolicy(DeliveryPolicy deliveryPolicy) {this.deliveryPolicy = deliveryPolicy;}
 
 	public void notifyUsers(RestaurantOffer offer){
+		//TODO 
 		for (User user : this.users){
 			user.
 		}
@@ -100,9 +101,8 @@ public class MyFoodora {
 	    //On récupère l'income total :) pour diviser ensuite
 	    ArrayList<Double> liste = new ArrayList<Double>();
 	    liste = this.computing(begin, end);
-	    
-	    
-	    
+	    double incomeTotal=liste.get(0);
+	    	    
 	    //On enregistre le tout dans une hashtable avec le numéro unique de chacun de nos clients 
 	    //On met à jour peu à peu
 	    
@@ -110,9 +110,9 @@ public class MyFoodora {
 	    for (Order order : this.orders){
 			if (order.getTime().before(end) && order.getTime().after(begin)){
 				if(ht.containsKey(order.getCustomer())){
-					ht.replace(order.getCustomer(), order.getPrice()+ ht.get(order.getCustomer()));
+					ht.replace(order.getCustomer(), order.getPrice()/incomeTotal+ ht.get(order.getCustomer()));
 				} else {
-					ht.put(order.getCustomer(), order.getPrice());
+					ht.put(order.getCustomer(), order.getPrice()/incomeTotal);
 				}
 			}
 		} 
@@ -166,6 +166,18 @@ public class MyFoodora {
 		}
 		
 		return liste;
+	 }
+	 
+	 public ArrayList<Order> sortOrders(){
+		 /* Allow restaurants and managers to sort the
+		shipped orders according to different criteris. MyFoodora should support the following
+		policies:
+		– most/least ordered half-meal: display all half-meals sorted w.r.t the number
+		of shipped half-meals
+		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
+		number of time they been selected `a la carte */
+		 
+		 
 	 }
 	
 }

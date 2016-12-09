@@ -105,7 +105,7 @@ public class Restaurant extends User {
 	}
 	
 	// A mettre dans les managers --> a reinstancer quand on n'en veut pas
-	public void sortShipped (String criteria, MyFoodora myFoodora){
+	public ArrayList<Order> sortShipped (String criteria, MyFoodora myFoodora){
 		/* Allow restaurants and managers to sort the
 		shipped orders according to different criteris. MyFoodora should support the following
 		policies:
