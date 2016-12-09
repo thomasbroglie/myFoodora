@@ -17,7 +17,6 @@ public class Order {
 				+ ", time=" + time + "]";
 	}
 	
-	
 
 	/**
 	 * @param customer

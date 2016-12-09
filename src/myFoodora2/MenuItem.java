@@ -63,5 +63,11 @@ public class MenuItem {
 		System.out.println(m.getCategory());
 		System.out.println(m.isVegetarian());
 	}
+	
+	//Implémentation du Visitor Pattern
+	@Override
+	public int accept(OrderVisitor visitor) {
+		return visitor.visit(this);
+	}
 		
 }

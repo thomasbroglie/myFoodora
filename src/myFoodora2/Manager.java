@@ -84,10 +84,10 @@ public class Manager extends User {
 		return myFoodora.mostLeastActiveCourier();
 	}
 	 
-	public void setDeliveryPolicy(){
+	public void setDeliveryPolicy(MyFoodora myFoodora, DeliveryPolicy deliveryPolicy){
 		// setting the current delivery-policy used by MyFoodora to determine which courier
 		// is assigned to deliver an order placed by a customer
-		//TODO : voir avec Olivier pour policy pattern (strategy)
+		myFoodora.setDeliveryPolicy(deliveryPolicy);
 	}
 	
 	
