@@ -5,18 +5,17 @@ import java.util.ArrayList;
 public class Notification implements Observable {
 
 	private  ArrayList<Observer> observers = new ArrayList<Observer>();	
-	private Restaurant resto; // a Notification comes from a restaurant
-	private String notifContents; // a Notification is considered as having a bodytext
+	private RestaurantOffer restaurantOffer;
 	private boolean changed;
 	
-	//consensus ?
-	
-	public Notification(Restaurant resto, String contents) {
+	public Notification(RestaurantOffer restaurantOffer) {
 		super();
-		this.resto = resto;
-		this.notifContents = notifContents;
+		this.restaurantOffer = restaurantOffer;
 		this.changed = false;
-	}	
+	}
+	
+	public boolean isChanged() {return changed;}
+	public void setChanged(boolean changed) {this.changed = changed;}
 	
 	@Override
 	public void registerObserver(Observer observer) {
@@ -31,19 +30,13 @@ public class Notification implements Observable {
 	@Override
 	public void notifyObservers() {
 		if (this.changed){
-			for (Observer ob : observers)
-				ob.update(this.notifContents);
+			for (Observer ob : observers){
+				//String offerContents = this.restaurantOffer.getOfferContent();
+				ob.update(this.restaurantOffer);
 			this.changed = false;
+			}
 		}		
 	}
-	
-	public void setNotifContents(String notifContents){
-		this.notifContents=notifContents;
-		this.changed=true;
-		this.notifyObservers();
-	}
 
-	public static ArrayList<Observer> getObservers() {return observers;}
-
-	public static void setObservers(ArrayList<Observer> observers) {Notification.observers = observers;}
+	public ArrayList<Observer> getObservers() {return observers;}
 }

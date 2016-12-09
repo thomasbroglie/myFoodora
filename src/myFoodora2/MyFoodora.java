@@ -59,11 +59,16 @@ public class MyFoodora {
 
 	//Notification des Users poour un nouvelle offre
 	public void notifyUsers(RestaurantOffer offer){
-		//TODO 
-		for (User user : this.users){
-			user.
+		ArrayList<User> custo = this.getUserPerType("customer");
+		Notification notification = new Notification(offer);
+		for (User user : custo){
+			Customer customer = (Customer) user;
+			if (customer.isConsensus()){ //and isActivated ? TODO
+				notification.registerObserver(customer);
+			}
 		}
-		
+		notification.setChanged(true);
+		notification.notifyObservers();
 	}
 	
 	//Modifications sur la liste users

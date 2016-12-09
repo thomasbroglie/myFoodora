@@ -11,7 +11,7 @@ public class FairOccupationDelivery implements DeliveryPolicy {
 		int numberOfCompletedDelivery = Integer.MAX_VALUE; //begins at Infinity
 		for (Courier c : couriers){
 			int orderNumber = c.getDeliveredOrderCounter(); //TODO : peut-etre verifier qu'il est bien actif!
-			if (orderNumber < numberOfCompletedDelivery){
+			if (orderNumber < numberOfCompletedDelivery && c.isWorkState()){
 				chosenCourier = c;
 				numberOfCompletedDelivery = orderNumber;
 			}

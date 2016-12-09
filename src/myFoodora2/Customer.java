@@ -9,23 +9,18 @@ public class Customer extends User implements Observer {
 	private String phone;
 	//private boolean consensus = false ; // True : the Customer agrees to get notified whenever a new special offer is set by ani restaurant
 	// no more consensus attribute : everything's handled by the ObserverPattern !
-	
+	private boolean consensus =false;
 	
 	//Fidelity basic = new Fidelity(basic)
 	private ArrayList<FidelityCard> fidelityCards = new ArrayList<FidelityCard>(); //a fidelitycard goes for ONE programm in ONE restaurant.
 	
 	
 	@Override
-	public void update(String notifContents) {
-		System.out.println("There is a new Notification for you : " + notifContents); 
-	}
-	
-	public void giveConsensus(){
-		//TODO : add to the Notification-list
-	}
-	
-	public void removeConsensus(){
-		//TODO : remove frome the Notification-list
+	public void update(RestaurantOffer restaurantOffer) {
+		Restaurant resto = restaurantOffer.getResto();
+		String offerContent = restaurantOffer.getOfferContent();
+		System.out.println("There is a new Notification from the Restaurant" + resto.getName());
+		System.out.println(offerContent); 
 	}
 	
 	public Customer(){
@@ -45,20 +40,19 @@ public class Customer extends User implements Observer {
 	public static int getIdCounter() {return idCounter;} //pas de setters pour ça.
 
 	public String getSurname() {return surname;}
-
 	public void setSurname(String surname) {this.surname = surname;}
 
 	public String getEmail() {return email;}
-
 	public void setEmail(String email) {this.email = email;}
 
 	public ArrayList<Double> getCoordonates() {return coordonates;}
-
 	public void setCoordonates(ArrayList<Double> coordonates) {this.coordonates = coordonates;}
 
 	public String getPhone() {return phone;}
-
 	public void setPhone(String phone) {this.phone = phone;}
+	
+	public boolean isConsensus() {return consensus;}
+	public void setConsensus(boolean consensus) {this.consensus = consensus;}
 
 	@Override
 	public String toString() {

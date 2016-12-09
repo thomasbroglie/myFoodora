@@ -23,7 +23,7 @@ public class FastestDelivery implements DeliveryPolicy{
 			double ycourier = position.get(1);
 			
 			double distance = Math.sqrt((xresto-xcourier)*(xresto-xcourier) + (yresto-ycourier)*(yresto-ycourier));
-			if (distance < distanceMinimum){
+			if (distance < distanceMinimum && courier.isWorkState()){
 				chosenCourier = courier;
 				distanceMinimum = distance;				
 			}
