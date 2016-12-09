@@ -62,5 +62,10 @@ public class Courier extends User {
 	public boolean isWorkState() {return workState;}
 
 	public void setWorkState(boolean workState) {this.workState = workState;}
+	
+	public void newCourse(){
+		//Sert à mettre à jour le compteur du nombre de courses du courier !
+		this.deliveredOrderCounter++;
+	}
 
 }
