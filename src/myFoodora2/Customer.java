@@ -1,12 +1,12 @@
 package myFoodora2;
 import java.util.*;
 
-public class Customer extends User implements Observer {
+public class Customer extends User implements Observer, OrderVisitor{
 	
-	private String surname;
-	private String email; //email adress
+	private String surname="";
+	private String email=""; //email adress
 	private ArrayList<Double> coordonates = new ArrayList<Double>(2) ; //coordonnées du lieu où habite le customer
-	private String phone;
+	private String phone ="";
 	//private boolean consensus = false ; // True : the Customer agrees to get notified whenever a new special offer is set by ani restaurant
 	// no more consensus attribute : everything's handled by the ObserverPattern !
 	private boolean consensus =false;
@@ -23,8 +23,12 @@ public class Customer extends User implements Observer {
 		System.out.println(offerContent); 
 	}
 	
-	public Customer(MyFoodora myFoodora){
+	public Customer(){
 		super();
+	}
+	
+	//Fonction parce qu'on ne le fait pas dans le constructeur car on a besoin d'un paramètre, incompatible avec le Factory
+	public void initializeFidelity(MyFoodora myFoodora){
 		FidelityCardFactory facto = new FidelityCardFactory();
 
 		for (User user : myFoodora.getUserPerType("Restaurant")){
@@ -33,7 +37,6 @@ public class Customer extends User implements Observer {
 			this.fidelityCards.add(fidel); //pas défaut, chaque costumer a la carte de fidélité basique pour tous les restaurants.
 			
 		}
-		
 	}
 	
 	//All the setters and Getters :
@@ -71,10 +74,65 @@ public class Customer extends User implements Observer {
 		fidelityCards.remove(fcard);
 	}
 	
+	
+	public ArrayList<FidelityCard> getFidelityCards() {
+		return fidelityCards;
+	}
+	
+	//Permet d'avoir le prix avec la carte de fidélité et les deux types de 
+	@Override
+	public double visit(MenuItem menuItem) {
+		double price = menuItem.getPrice();
+		return price;
+	}
+	
+	@Override
+	public double visit(Meal meal) {
+		Restaurant restaurant = meal.getRestaurant(); //On a besoin des paramètres du restaurant (facteurs)
+		Meal mealOfTheWeek = restaurant.getMealOfTheWeek(); //On va vérifier si c'est un plat de la semaine
+		double price = meal.getPrice();
+		double specificDiscountFactor = restaurant.getSpecificDiscountFactor();
+		double genericDiscountFactor = restaurant.getGenericDiscountFactor();
+		double prixFinal;
+		FidelityCardFactory facto = new FidelityCardFactory();
+		FidelityCard fidel = facto.createFidelityCard("BASIC", restaurant);
+		
+		//On recherche la carte de fidélité du client
+		for (FidelityCard card : this.getFidelityCards()){
+			if(card.getResto()==restaurant){
+				fidel = card;
+			}
+		}
+		
+		if (meal == mealOfTheWeek && fidel instanceof BasicFidelityCard){
+			prixFinal = price * specificDiscountFactor;
+		} else if (fidel instanceof PointFidelityCard){
+			PointFidelityCard fidelity = (PointFidelityCard) fidel;
+			if(fidelity.hasCentPoints()){
+				fidelity.usePoints();
+				prixFinal = price*0.1;
+			} else {
+				prixFinal = price;
+			}
+			fidelity.addPoints(price);
+		} else if (fidel instanceof LotteryFidelityCard){
+			LotteryFidelityCard fidelity = (LotteryFidelityCard) fidel;
+			if (fidelity.hasWon()) {
+				prixFinal = 0;
+				fidelity.reset();
+			} else {
+				prixFinal = price;
+			}
+		} else {
+			prixFinal = price * genericDiscountFactor;
+		}
+		
+		return prixFinal;
+	}
+
 	public void getInformations(){
 		//informations about the account of a customer : history of orders, points acquired with a fidelity programm
 		//TO DO
 	}
-	
 	
 }

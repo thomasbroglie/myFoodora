@@ -27,35 +27,26 @@ public class Order {
 	 * @param products
 	 * @param courier
 	 * @param time
-	 * @param price
 	 */
 	
-	public Order(Customer customer, Restaurant resto, Hashtable<Product, Double> products, Courier courier, Date time, double price) {
+	public Order(Customer customer, Restaurant resto, Hashtable<Product, Double> products, Courier courier, Date time) {
 		super();
 		this.customer = customer;
 		this.resto = resto;
 		this.products = products;
 		this.courier = courier;
 		this.time = time;
-		this.price = price;
+		
 	}
 
 	public double getPrice() { return price; }
-
-	public void setPrice(double price) { this.price = price; }
-
+	
 	public Customer getCustomer() {return customer;}
-
-	public void setCustomer(Customer customer) {this.customer = customer;}
 
 	public Restaurant getResto() {return resto;}
 
-	public void setResto(Restaurant resto) {this.resto = resto;}
-
 	public Hashtable<Product, Double> getProducts() {return products;}
-	
-	public void setProducts(Hashtable<Product, Double> products){this.products=products;}
-	
+		
 	public void addProduct(Product product, double quantity){
 		//On ajoute à la Hashtable le produit et on met à jour la quantité si il existait déjà sinon on met la quantité demandée
 		if (this.products.containsKey(product)){
@@ -67,10 +58,6 @@ public class Order {
 
 	public Courier getCourier() {return courier;}
 
-	public void setCourier(Courier courier) {this.courier = courier;}
-
 	public Date getTime() {return time;}
-
-	public void setTime(Date time) {this.time = time;}
 	
 }

@@ -1,16 +1,27 @@
 package myFoodora2;
+import java.math.*;
 
 public class LotteryFidelityCard extends FidelityCard{
 	
-	private double probability; //the Customer with this card has the possibility to get a free meal each day with this probability
-
+	private boolean winner;
+	
 	public LotteryFidelityCard(Restaurant resto) {
 		super(resto);
+		winner = false;
 		// TODO Auto-generated constructor stub
 	}
-
-	public double getProbability() {return probability;}
-
-	public void setProbability(double probability) {this.probability = probability;}
 	
+	public boolean hasWon(){
+		return this.winner;
+	}
+	
+	//Probabilité de 1%
+	public void setWinner(){
+		int nbAleatoire = (int) (Math.random() * 99 + 1);
+		if (nbAleatoire == 1) this.winner=true;
+	}
+	
+	public void reset(){
+		this.winner = false;
+	}
 }

@@ -12,5 +12,17 @@ public class PointFidelityCard extends FidelityCard{
 	public int getPoints() {return points;}
 
 	public void setPoints(int points) {this.points = points;}
+	
+	public boolean hasCentPoints(){
+		if(this.points>=100) return true;
+		else return false;
+	}
+	
+	public void usePoints(){
+		this.points-=100;
+	}
 
+	public void addPoints(double price){
+		this.points=(int) price/10;
+	}
 }

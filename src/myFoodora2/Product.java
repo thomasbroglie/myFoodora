@@ -2,6 +2,6 @@ package myFoodora2;
 
 public interface Product {
 	
-	public double getFinalPrice();	
+	public double getFinalPrice(OrderVisitor visitor);
 	
 }
