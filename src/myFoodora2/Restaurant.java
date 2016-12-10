@@ -1,6 +1,5 @@
 package myFoodora2;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class Restaurant extends User {
 	
@@ -104,8 +103,7 @@ public class Restaurant extends User {
 		return this.specificDiscountFactor;
 	}
 	
-	// A mettre dans les managers --> a reinstancer quand on n'en veut pas
-	public ArrayList<Order> sortShipped (String criteria, MyFoodora myFoodora){
+	public TreeMap<Product, Double> sortShipped (SortStrategy strategy, MyFoodora myFoodora){
 		/* Allow restaurants and managers to sort the
 		shipped orders according to different criteris. MyFoodora should support the following
 		policies:
@@ -114,7 +112,17 @@ public class Restaurant extends User {
 		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
 		number of time they been selected `a la carte */
 		
-		return myFoodora.sortOrders(criteria); 
+		ArrayList<Order> orders = myFoodora.getOrders();
+		ArrayList<Order> ordersOfTargetRestaurant = new ArrayList<Order>();
+		
+		//On crée une liste avec les orders concernant notre restaurant ! :)
+		for (Order order : orders){
+			if(order.getResto().getId() == this.id){
+				ordersOfTargetRestaurant.add(order);
+			}
+		}
+		
+		return strategy.sort(ordersOfTargetRestaurant); 
 	}
 
 	public ArrayList<Double> getAdress() {return adress;}

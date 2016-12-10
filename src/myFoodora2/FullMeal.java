@@ -34,9 +34,6 @@ public class FullMeal extends Meal {
 		}
 	}
 
-	
-
-	
-	
+	public static 
 	
 }

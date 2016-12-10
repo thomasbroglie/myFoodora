@@ -90,5 +90,15 @@ public class Manager extends User {
 		myFoodora.setDeliveryPolicy(deliveryPolicy);
 	}
 	
-	
+	public TreeMap<Product,Double> sortOrders(SortStrategy strategy, MyFoodora myFoodora){
+		 /* Allow restaurants and managers to sort the
+		shipped orders according to different criteris. MyFoodora should support the following
+		policies:
+		– most/least ordered half-meal: display all half-meals sorted w.r.t the number
+		of shipped half-meals
+		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
+		number of time they been selected `a la carte */
+		
+		 return myFoodora.sortOrders(strategy);
+	 }	
 }

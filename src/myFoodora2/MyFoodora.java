@@ -183,7 +183,7 @@ public class MyFoodora {
 		return liste;
 	 }
 	 
-	 public ArrayList<Order> sortOrders(String criteria){
+	 public TreeMap<Product,Double> sortOrders(SortStrategy strategy){
 		 /* Allow restaurants and managers to sort the
 		shipped orders according to different criteris. MyFoodora should support the following
 		policies:
@@ -192,7 +192,7 @@ public class MyFoodora {
 		– most/least ordered item `a la carte: display all menu items sorted w.r.t the
 		number of time they been selected `a la carte */
 		
-		 
+		 return strategy.sort(this.orders);
 	 }
 	
 }

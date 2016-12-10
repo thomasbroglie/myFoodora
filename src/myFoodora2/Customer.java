@@ -23,12 +23,13 @@ public class Customer extends User implements Observer {
 		System.out.println(offerContent); 
 	}
 	
-	public Customer(){
+	public Customer(MyFoodora myFoodora){
 		super();
 		FidelityCardFactory facto = new FidelityCardFactory();
 
-		for (Restaurant resto : LISTE DES RESTAURANTS){
-			FidelityCard fidel = new BasicFidelityCard(resto);
+		for (User user : myFoodora.getUserPerType("Restaurant")){
+			Restaurant resto = (Restaurant) user;
+			FidelityCard fidel = facto.createFidelityCard("BASIC", resto);
 			this.fidelityCards.add(fidel); //pas défaut, chaque costumer a la carte de fidélité basique pour tous les restaurants.
 			
 		}
@@ -74,22 +75,6 @@ public class Customer extends User implements Observer {
 		//informations about the account of a customer : history of orders, points acquired with a fidelity programm
 		//TO DO
 	}
-	
-	public static void main(String[] args) {
-		ArrayList<Double> coord = new ArrayList<Double>();
-		coord.add(2.33);
-		coord.add(1.25);
-		Customer c1 = new Customer("kiki", "Ribery", "Frank", "bibi.com", coord, "0648309055");
-		Customer c4 = new Customer("kiki", "Ribery", "Frank", "bibi.com", coord, "0648309055");
-		
-		
-		System.out.println(c1.id);
-		System.out.println(c4.id);
-		
-	}
-	
-	
-	
 	
 	
 }
